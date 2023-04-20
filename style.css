@@ -1,0 +1,30 @@
+.topnav {
+    background-color: #748CAB;
+    overflow: hidden;
+    text-align: center;
+  }
+    
+  /* Style the links inside the navigation bar */
+  .topnav h1 {
+    float: left;
+    color: #040507;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+body{
+    background-image: linear-gradient(rgba(233, 221, 89, 0.785) 60%, rgba(156, 195, 231, 0.735) 40%);
+    height: 100%; 
+}  
+html{
+    background-image: linear-gradient(rgba(233, 221, 89, 0.785) 60%, rgba(156, 195, 231, 0.735) 40%);
+    height: 100%;
+}
+.dot {
+    height: 50px;
+    width: 50px;
+    background-color: #eac034;
+    border-radius: 50%;
+    display: inline-block;
+  }
