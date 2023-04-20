@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <link rel="stylesheet" href="style.css">
+        <title>WEATHER APP</title>
+        <meta name="description" content="My Weather App">
     </head>
     <body>
-        <div class="topnav">
-            <h1>Temp</h1>
-            <h1>ICON</h1>
-            <h1>Date</h1>
-            <h1>Location</h1> 
+    <main>
+        <div>
+            <h1 id="date">Today is: 4/19/2023</h1>
+            <h2 id="temperature">Click the Button to see temperature!</h2>
+            <h3 id ="weatherStatus">click the button to see weather Status!</h3>
         </div> 
+        <img src="cloud.webp" alt="Cloud Icon" class="weather-icon">
+        <button id="getWeatherBtn">Get Weather</button>
+        <div class="fiveday">
+		    <div class="forecast">X</div>
+		    <div class="forecast">X</div>
+		    <div class="forecast">X</div>
+		    <div class="forecast">X</div>
+		    <div class="forecast">X</div>
+	    </div>
+    </main>
+
+        </div>
         <span class="dot"></span>
     </body>
 </html>
