@@ -1,3 +1,6 @@
+// Create the variable for latitude
+// Create the variable for longitude
+
 window.onload = function() {
     const date = new Date();
     const dateString = (date.getMonth() + 1) + '/' + date.getDate() +      '/' + date.getFullYear();
