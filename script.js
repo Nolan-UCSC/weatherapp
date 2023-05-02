@@ -22,7 +22,10 @@ function success(position){
 	// Print out the latitude and longitude to see if it works!
     
 }
-btn.addEventListener("click", () => {
+
+const btn = document.getElementById('getWeatherBtn');
+
+btn.addEventListener("click", function(){
     let forecast = [["M", 52], ["Tu", 53], ["W", 54], ["Th", 55], ["F", 56]]
     let forecastElements = document.getElementsByClassName("forecast");
     for (let i = 0; i < forecast.length; i++) {
