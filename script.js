@@ -33,17 +33,32 @@ btn.addEventListener("click", function() {
     const body = JSON.parse(xhr.responseText)
 	  var temperature = body.temperature
 	  var weatherStatus = body.weatherStatus
-	  document.getElementById('temperature').innerHTML = `Temperature: ${temperature} "\u00B0F"F`
+	  document.getElementById('temperature').innerHTML = `Temperature: ${temperature}"\u00B0F sF`
     document.getElementById('weatherStatus').innerHTML = `Weather Status: ${weatherStatus}`
 
 
   }
+
+  //-------------------- FORCAST --------------------\\
 
   var temp = 59
   var location = "Santa Cruz"
   var helloString = `In ${location} it is ${temp} Degrees`
   console.log(helloString) // Output: In Santa Cruz it is 59 Degrees
 
+  const xhr2 = new XMLHttpRequest();
+  xhr2.open("GET", `http://localhost:3000/weather/${lat}/${lon}`);
+  xhr2.send();
+  
+  xhr2.onload = function() {
+    const body = JSON.parse(xhr2.responseText)
+    var forecast = body.forecast //Remember: this is a list
+    var forecastElements = document.getElementsByClassName("forecast");
+    for (var i = 0; i < forecast.length; i++) {
+      forecastElements[i].innerHTML = `${forecast[i].dayName}: ${forecast[i].temp} \u00B0F F`;
+  }
+  }
+  
 
 
 
