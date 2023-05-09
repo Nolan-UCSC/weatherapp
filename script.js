@@ -24,11 +24,35 @@ function success(position){
 }
 
 const btn = document.getElementById('getWeatherBtn');
-
 btn.addEventListener("click", function() {
-    let forecast = [["M", 52], ["Tu", 53], ["W", 54], ["Th", 55], ["F", 56]]
-    let forecastElements = document.getElementsByClassName("forecast");
-    for (let i = 0; i < forecast.length; i++) {
-        forecastElements[i].innerHTML = forecast[i][0] + ": " + forecast[i][1] + "\u00B0F";
-      }
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", `http://localhost:3000/weather/${lat}/${lon}`); 
+  xhr.send();
+
+  xhr.onload = function() {
+    const body = JSON.parse(xhr.responseText)
+	  var temperature = body.temperature
+	  var weatherStatus = body.weatherStatus
+	  document.getElementById('temperature').innerHTML = `Temperature: ${temperature} "\u00B0F"F`
+    document.getElementById('weatherStatus').innerHTML = `Weather Status: ${weatherStatus}`
+
+
+  }
+
+  var temp = 59
+  var location = "Santa Cruz"
+  var helloString = `In ${location} it is ${temp} Degrees`
+  console.log(helloString) // Output: In Santa Cruz it is 59 Degrees
+
+
+
+
+
+
+
+  let forecast = [["M", 52], ["Tu", 53], ["W", 54], ["Th", 55], ["F", 56]]
+  let forecastElements = document.getElementsByClassName("forecast");
+  for (let i = 0; i < forecast.length; i++) {
+      forecastElements[i].innerHTML = forecast[i][0] + ": " + forecast[i][1] + "\u00B0F";
+  }
 });
