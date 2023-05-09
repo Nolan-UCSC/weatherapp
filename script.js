@@ -33,7 +33,7 @@ btn.addEventListener("click", function() {
     const body = JSON.parse(xhr.responseText)
 	  var temperature = body.temperature
 	  var weatherStatus = body.weatherStatus
-	  document.getElementById('temperature').innerHTML = `Temperature: ${temperature}"\u00B0F sF`
+	  document.getElementById('temperature').innerHTML = `Temperature: ${temperature} \u00B0F F`
     document.getElementById('weatherStatus').innerHTML = `Weather Status: ${weatherStatus}`
 
 
