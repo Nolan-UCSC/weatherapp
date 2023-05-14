@@ -77,6 +77,8 @@ app.get('/weather/:lat/:lon', (req, res) => {
   res.send('Hello World!');
   console.log("welcome to the root!");
   
+  const API_KEY = "3092ee183a792e5d06dbcaa736edcf49"
+
   var lat = req.params.lat; // New Code
   var lon = req.params.lon; // New Code
   var url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
