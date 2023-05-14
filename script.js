@@ -59,7 +59,58 @@ btn.addEventListener("click", function() {
   }
   }
   
-
+  app.get('/5day/:lat/:lon', (req, res) => {
+    res.send('Hello World!');
+    console.log("welcome to the root!");
+    
+    const API_KEY = "3092ee183a792e5d06dbcaa736edcf49"
+  
+    var lat = req.params.lat;
+    var lon = req.params.lon;
+    var url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+  
+    
+    request(url, (error, response, body)=>{
+      
+      // Printing the error if occurred
+      if(error) console.log(error)
+       
+      // Printing status code
+      console.log(response.statusCode);
+       
+      // Printing body
+      body = JSON.parse(body)
+      let  weatherStatus = body.weather[0].main
+      return {"temp": body.main.temp, "weatherStatus" : weatherStatus} 
+    });
+    
+  });
+  app.listen(3000, () => {
+    console.log('Example app listening on port 3000!');
+  });
+  
+  
+  todaysDate = new Date().getDay() // get’s today’s day
+  const week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  let forecast = []
+  for (let i = 0; i < 5; i++){
+    let tempSum = 0
+    let count = 0
+    for (let  dataPoint of body.list){ // For each data point in the forecast
+    const date = new Date(dataPoint.dt * 1000) // Converts ms to seconds and creates date
+    if (date.getDay() == todaysDate ){ //if the current hourlyData reference point is equal to our day:
+      count++; // Add 1 to the total data points
+      tempSum += dataPoint.main.temp // add the temperature to our running total
+      }
+  }
+    const day = {"dayName": week[todaysDate], "temp": Math.round(tempSum / count) } // create our JSON datapoint
+    forecast.push(day) // Add the JSON datapoint to our forecast.
+    todaysDate = (todaysDate  + 1) % 7 //Add 1 to the current day. If we reach day 7,then set to day 0
+     } (End of for loop)
+     res.send({ forecast });
+     }
+    });
+  });
 
 
 
@@ -73,31 +124,5 @@ btn.addEventListener("click", function() {
 });
 
 
-app.get('/weather/:lat/:lon', (req, res) => {
-  res.send('Hello World!');
-  console.log("welcome to the root!");
-  
-  const API_KEY = "3092ee183a792e5d06dbcaa736edcf49"
 
-  var lat = req.params.lat;
-  var lon = req.params.lon;
-  var url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
 
-  
-	request(url, (error, response, body)=>{
-		
-		// Printing the error if occurred
-		if(error) console.log(error)
-	   
-		// Printing status code
-		console.log(response.statusCode);
-		 
-		// Printing body
-		body = JSON.parse(body)
-		console.log(body.main.temp);
-	});
-  
-});
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
-});
